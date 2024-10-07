@@ -6,10 +6,7 @@ namespace HashExperiment.Test;
 
 public class QuickAndDirtyHashTest
 {
-    [Fact]
-    public void TestHash()
-    {
-        Span<byte[]> testSet =
+    public static readonly byte[][] TestSet =
         [
             [0],
             [1],
@@ -19,13 +16,17 @@ public class QuickAndDirtyHashTest
             RandomNumberGenerator.GetBytes(16),
             RandomNumberGenerator.GetBytes(16),
             RandomNumberGenerator.GetBytes(256),
+            RandomNumberGenerator.GetBytes(1337),
             RandomNumberGenerator.GetBytes(2048),
         ];
 
+    [Fact]
+    public void TestHash()
+    {
         List<byte[]> resultSet = [];
 
         HashAlgorithm hashAlgorithm = QuickAndDirtyHash.Create();
-        foreach (var testArray in testSet)
+        foreach (var testArray in TestSet)
         {
             var firstHash = hashAlgorithm.ComputeHash(testArray);
             var secondHash = hashAlgorithm.ComputeHash(testArray);
@@ -58,7 +59,7 @@ public class QuickAndDirtyHashTest
         CheckUnicity(resultSet);
     }
 
-    private static void CheckUnicity(List<byte[]> resultSet)
+    internal static void CheckUnicity(List<byte[]> resultSet)
     {
         for (int i = 0; i < resultSet.Count; i++)
         {
