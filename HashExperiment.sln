@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashExperiment", "HashExperiment\HashExperiment.csproj", "{B39CA189-46C3-4585-8061-2BCE832462F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashExperiment", "HashExperiment\HashExperiment.csproj", "{B39CA189-46C3-4585-8061-2BCE832462F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashExperiment.Test", "HashExperiment.Test\HashExperiment.Test.csproj", "{2BDD8D67-7A64-438C-A653-76FADDE66055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashExperiment.Test", "HashExperiment.Test\HashExperiment.Test.csproj", "{2BDD8D67-7A64-438C-A653-76FADDE66055}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashExperiment.Bench", "HashExperiment.Bench\HashExperiment.Bench.csproj", "{B759CFF6-850A-49AF-AC41-750726089AE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2BDD8D67-7A64-438C-A653-76FADDE66055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BDD8D67-7A64-438C-A653-76FADDE66055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BDD8D67-7A64-438C-A653-76FADDE66055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B759CFF6-850A-49AF-AC41-750726089AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B759CFF6-850A-49AF-AC41-750726089AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B759CFF6-850A-49AF-AC41-750726089AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B759CFF6-850A-49AF-AC41-750726089AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

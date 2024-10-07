@@ -32,25 +32,17 @@ public class FasterQuickAndDirtyHash : HashAlgorithm
 
     protected override void HashCore(ReadOnlySpan<byte> source)
     {
-        if (!Vector128<byte>.IsSupported)
-        {
-            for (int i = 0; i < source.Length; i++)
-                _hash[i % HashSizeInBytes] ^= source[i];
-        }
-        else
-        {
-            int tailLength = source.Length % HashSizeInBytes;
+        int tailLength = source.Length % HashSizeInBytes;
 
-            int vectorizableLength = source.Length - tailLength;
-            var buffer = Vector128.Create(_hash);
-            for (int i = 0; i < vectorizableLength; i += HashSizeInBytes)
-                buffer ^= Vector128.Create(source.Slice(i, HashSizeInBytes));
+        int vectorizableLength = source.Length - tailLength;
+        var buffer = Vector128.Create(_hash);
+        for (int i = 0; i < vectorizableLength; i += HashSizeInBytes)
+            buffer ^= Vector128.Create(source.Slice(i, HashSizeInBytes));
 
-            buffer.CopyTo(_hash);
+        buffer.CopyTo(_hash);
 
-            for (int i = source.Length - tailLength; i < source.Length; i++)
-                _hash[i % HashSizeInBytes] ^= source[i];
-        }
+        for (int i = source.Length - tailLength; i < source.Length; i++)
+            _hash[i % HashSizeInBytes] ^= source[i];
     }
 
     protected override byte[] HashFinal() => _hash;
