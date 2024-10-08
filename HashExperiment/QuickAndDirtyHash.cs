@@ -35,5 +35,18 @@ public class QuickAndDirtyHash : HashAlgorithm
             _hash[i % HashSizeInBytes] ^= source[i];
     }
 
+    protected override bool TryHashFinal(Span<byte> destination, out int bytesWritten)
+    {
+        if (destination.Length != HashSizeInBytes)
+        {
+            bytesWritten = 0;
+            return false;
+        }
+
+        _hash.CopyTo(destination);
+        bytesWritten = HashSizeInBytes;
+        return true;
+    }
+
     protected override byte[] HashFinal() => _hash;
 }

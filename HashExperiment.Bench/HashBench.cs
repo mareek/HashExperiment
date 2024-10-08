@@ -12,8 +12,16 @@ public class HashBench
     private readonly HashAlgorithm _slowHashAlgo = QuickAndDirtyHash.Create();
 
     [Benchmark]
-    public void FastHash() => _fastHashAlgo.ComputeHash(_data);
+    public void FastHash()
+    {
+        Span<byte> buffer = stackalloc byte[16];
+        _fastHashAlgo.TryComputeHash(_data, buffer, out var _);
+    }
 
     [Benchmark]
-    public void SlowHash() => _slowHashAlgo.ComputeHash(_data);
+    public void SlowHash()
+    {
+        Span<byte> buffer =  stackalloc byte[16];
+        _slowHashAlgo.TryComputeHash(_data, buffer, out var _);
+    }
 }
